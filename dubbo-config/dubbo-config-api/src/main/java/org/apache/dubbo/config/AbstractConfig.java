@@ -97,9 +97,9 @@ public abstract class AbstractConfig implements Serializable {
         Method[] methods = config.getClass().getMethods();
         for (Method method : methods) {
             try {
-                String name = method.getName();
-                if (name.length() > 3 && name.startsWith("set") && Modifier.isPublic(method.getModifiers())
-                        && method.getParameterTypes().length == 1 && isPrimitive(method.getParameterTypes()[0])) {
+                String name = method.getName(); /* get AbstractConfig class all method within this class */
+                if (name.length() > 3 && name.startsWith("set") && Modifier.isPublic(method.getModifiers())/* method is setXXX, and is public method*/
+                        && method.getParameterTypes().length == 1 && isPrimitive(method.getParameterTypes()[0])) /* method parameter contains only one parameter, and is basic type*/{
                     String property = StringUtils.camelToSplitName(name.substring(3, 4).toLowerCase() + name.substring(4), ".");
 
                     String value = null;
